@@ -54,7 +54,7 @@ if __name__ == "__main__":
         print(f"Total chunks: {len(chunks)}")
         
     elif CHECK == "chunk":
-        idx = 397  # index of the chunk you want to load
+        idx = 397  # index of the chunk you want to load    
         print(f"Chunk {idx}: {chunks[idx]}")
         
     elif CHECK == "lengths":

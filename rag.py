@@ -2,10 +2,10 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from src.retriever import Retriever
-from src.loader import PDFLoader
-from src.chunking import *
+
+
 from Generation.Prompt import build_messages
-from src.vectordb import *
+
 
 # using dotenv to load environment variables from .env file
 env_path = os.path.join(os.path.dirname(__file__), "..",'.env')
@@ -22,10 +22,10 @@ def generate_answer(query: str, retriever: Retriever, top_k: int = 6) -> dict:
     context = results["text"].tolist()
     messages = build_messages(query, context)
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-120b",
         messages=messages,
         temperature=0.2,
-        max_tokens=350
+        max_tokens=700
     )
     # returning the query, context, and the AI assistant's answer as a dictionary
     return {

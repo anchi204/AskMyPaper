@@ -1,8 +1,7 @@
 #imports 
 import pandas as pd
 from .vectordb import *
-from .loader import *
-from .chunking import *
+
 from rank_bm25 import BM25Okapi
 from flashrank import Ranker , RerankRequest
 

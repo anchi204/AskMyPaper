@@ -1,6 +1,6 @@
 import ollama
-from .chunking import *
-from .loader import *
+from .chunking import chunk_document , file_path
+
 
 """ 
     IN this Module we will be embedding the document chunks into a vector database for semantic search and retrieval.
@@ -42,11 +42,12 @@ def embed_query(query:str ) -> list[float]:
     return response.embeddings[0]
 
 if __name__ == "__main__":
-    embedding = embed_doc(file_path)
-    print(f"Embedding vector for first chunk: {embedding[0]}") # prints the embedding vector for the first chunk    
+    embedding , text_chunks  = embed_doc(file_path)
+    print(f"Embedding vector for first chunk: {embedding[0][:10]}... (truncated)") # prints the embedding vector for the first chunk    
     print(f"Total number of chunks embedded: {len(embedding)}")
-    print(type(embedding))
-    print(type(embedding[0]))
-    print(type(embedding[0][0]))
+    
+    print(type(embedding))          #<class 'list'>
+    print(type(embedding[0]))       #<class 'list'>
+    print(type(embedding[0][0]))    #<class 'float'>
     print("Embedding dimension:" ,len(embedding[0]))# prints the dimension of the embedding vector
     
