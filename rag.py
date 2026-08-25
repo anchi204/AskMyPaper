@@ -3,9 +3,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from src.retriever import Retriever
 
-
 from Generation.Prompt import build_messages
-
 
 # using dotenv to load environment variables from .env file
 env_path = os.path.join(os.path.dirname(__file__), "..",'.env')
@@ -25,7 +23,7 @@ def generate_answer(query: str, retriever: Retriever, top_k: int = 6) -> dict:
         model="openai/gpt-oss-120b",
         messages=messages,
         temperature=0.2,
-        max_tokens=700
+        max_tokens=1700
     )
     # returning the query, context, and the AI assistant's answer as a dictionary
     return {
@@ -39,7 +37,7 @@ if __name__ == "__main__":
     
     retriever = Retriever()
     
-    query = "What is prompt engineering?"
+    query = str(input("Enter your query: "))
     answer_data = generate_answer(query, retriever, top_k=6)
     
     print("Context:", answer_data["context"])

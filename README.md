@@ -1,6 +1,6 @@
 # 📄 Ask My Paper
 
-> **🚧 Under Active Construction — Core pipeline functional, multimodal & evaluation layers in progress.**
+>  RAG ( Retrival-Augmented-Generations)  
 
 A multimodal academic RAG system built for researchers and students who need to **actually understand** their papers — not just keyword-search them. Ask My Paper handles text, tables, equations, and embedded images inside PDFs, runs hybrid retrieval with reranking, and is evaluated end-to-end with RAGAS metrics.
 
@@ -14,7 +14,7 @@ This isn't a generic PDF Q&A wrapper. It's built from scratch as a targeted acad
 - Extracts and understands **text, tables, equations, and figures** from PDFs
 - Retrieves relevant context using **hybrid BM25 + dense vector search** fused with RRF
 - Reranks candidates with **FlashRank** before generation
-- Generates grounded answers via **GPT-4o / GPT-4V** (no hallucination shortcuts)
+- Generates grounded answers via **openai/gpt-oss-120b** (no hallucination shortcuts)
 - Evaluates pipeline quality with **RAGAS** (faithfulness, answer relevancy)
 - Logs all experiments to **Weights & Biases**
 
@@ -44,7 +44,7 @@ PDF Input
    RRF Fusion → FlashRank Reranker
           │
           ▼
-   GPT-4o Generation
+   openai/gpt-oss-120b Generation
           │
           ▼
    RAGAS Evaluation + W&B Logging
@@ -66,7 +66,7 @@ PDF Input
 | Sparse Retrieval | `BM25` |
 | Fusion | Reciprocal Rank Fusion (RRF) |
 | Reranking | `FlashRank` |
-| LLM | `GPT-4o` / `GPT-4V` (OpenAI SDK — no LangChain) |
+| LLM | `openai/gpt-oss-120b` (OpenAI SDK — no LangChain) |
 
 ### Evaluation & Observability
 | Component | Technology |
@@ -158,27 +158,7 @@ streamlit run app.py
 
 ---
 
-## 🗺️ Roadmap
 
-- [x] Hybrid BM25 + dense retrieval with RRF fusion
-- [x] FlashRank reranking
-- [x] Multimodal PDF parsing (text, tables, images, equations)
-- [x] GPT-4V image captioning
-- [x] RAGAS evaluation pipeline
-- [x] W&B experiment logging
-- [ ] CRAG-style quality gate (corrective retrieval)
-- [ ] Failure analysis on low-scoring RAGAS samples
-- [ ] Streamlit UI polish
-- [ ] Docker support
-- [ ] Citation tracing (answer → exact PDF chunk + page)
-
----
-
-## 🤝 Contributing
-
-This project is actively under construction. Issues and PRs are welcome once the core pipeline stabilizes.
-
----
 
 ## 📬 Contact
 
